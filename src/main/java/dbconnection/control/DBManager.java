@@ -17,7 +17,7 @@ public class DBManager {
     @PersistenceContext(unitName = "myPU")
     private EntityManager entityManager;
 
-    public List<Temperature> test() {
+    public List<Temperature> getAllTemperatures() {
         //return entityManager.createQuery("SELECT t FROM Temperature t").getResultList();
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
