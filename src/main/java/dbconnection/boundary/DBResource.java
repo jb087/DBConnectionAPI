@@ -21,6 +21,6 @@ public class DBResource {
     @GET
     public Response selectAll() {
         List<Temperature> temperatures = dbManager.getAllTemperatures();
-        return Response.ok(temperatures).build();
+        return Response.ok(temperatures).header("Access-Control-Allow-Origin", "*").build();
     }
 }
