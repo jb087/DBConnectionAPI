@@ -21,6 +21,7 @@ public class DBResource {
     private static final String ALL_PATH = "all";
     private static final String SENSOR_MEASUREMENT_PATH = "sensor/{id}";
     private static final String GENERATE_MEASUREMENTS = "generate-measurements";
+
     @Inject
     private DBManager dbManager;
 
