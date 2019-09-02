@@ -10,7 +10,7 @@ import java.util.Date;
 import static org.junit.Assert.assertTrue;
 
 
-public class dbTest {
+public class DateTest {
 
     private Date date1;
     private Date date2;
