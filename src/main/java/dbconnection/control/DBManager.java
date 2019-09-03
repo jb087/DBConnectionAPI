@@ -60,12 +60,12 @@ public class DBManager {
         predicates.add(criteriaBuilder.equal(root.get("sensorId"), sensorId));
 
         if (!Strings.isNullOrEmpty(fromDate)) {
-            Predicate predicate = criteriaBuilder.greaterThanOrEqualTo(root.get("datetime"), LocalDateTime.parse(fromDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            Predicate predicate = criteriaBuilder.greaterThanOrEqualTo(root.get("datetime"), LocalDateTime.parse(fromDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             predicates.add(predicate);
         }
 
         if (!Strings.isNullOrEmpty(toDate)) {
-            Predicate predicate = criteriaBuilder.lessThanOrEqualTo(root.get("datetime"), LocalDateTime.parse(toDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            Predicate predicate = criteriaBuilder.lessThanOrEqualTo(root.get("datetime"), LocalDateTime.parse(toDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             predicates.add(predicate);
         }
 
