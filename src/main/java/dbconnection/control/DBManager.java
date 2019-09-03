@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class DBManager {
         return typedQuery.getResultList();
     }
 
-    public List<Temperature> getMeasurementForSensor(String sensorId, String fromDate, String toDate) throws ParseException {
+    public List<Temperature> getMeasurementForSensor(String sensorId, String fromDate, String toDate) {
         // without date predicates return entityManager.createQuery("SELECT t FROM Temperature t WHERE t.sensorId =" + sensorId + " ORDER BY t.datetime").getResultList();
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -54,7 +53,7 @@ public class DBManager {
         return typedQuery.getResultList();
     }
 
-    private Predicate[] getPredicates(String sensorId, String fromDate, String toDate, CriteriaBuilder criteriaBuilder, Root<Temperature> root) throws ParseException {
+    private Predicate[] getPredicates(String sensorId, String fromDate, String toDate, CriteriaBuilder criteriaBuilder, Root<Temperature> root) {
         List<Predicate> predicates = Lists.newArrayList();
 
         predicates.add(criteriaBuilder.equal(root.get("sensorId"), sensorId));
