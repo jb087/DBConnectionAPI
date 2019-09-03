@@ -1,12 +1,14 @@
 package dbconnection.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "temperature")
@@ -22,9 +24,7 @@ public class Temperature implements Serializable {
     private int sensorId;
 
     @Column(name = "datetime")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date datetime;
+    private LocalDateTime datetime;
 
     @Column(name = "temperature")
     private float temperature;

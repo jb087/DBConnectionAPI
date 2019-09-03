@@ -13,9 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -60,12 +60,12 @@ public class DBManager {
         predicates.add(criteriaBuilder.equal(root.get("sensorId"), sensorId));
 
         if (!Strings.isNullOrEmpty(fromDate)) {
-            Predicate predicate = criteriaBuilder.greaterThanOrEqualTo(root.get("datetime"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(fromDate));
+            Predicate predicate = criteriaBuilder.greaterThanOrEqualTo(root.get("datetime"), LocalDateTime.parse(fromDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             predicates.add(predicate);
         }
 
         if (!Strings.isNullOrEmpty(toDate)) {
-            Predicate predicate = criteriaBuilder.lessThanOrEqualTo(root.get("datetime"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(toDate));
+            Predicate predicate = criteriaBuilder.lessThanOrEqualTo(root.get("datetime"), LocalDateTime.parse(toDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             predicates.add(predicate);
         }
 
@@ -87,7 +87,7 @@ public class DBManager {
             Random random = new Random();
             temperature.setTemperature(36.0f + random.nextFloat());
 
-            temperature.setDatetime(new Date());
+            temperature.setDatetime(LocalDateTime.now());
 
             temperatures.add(temperature);
             try {
