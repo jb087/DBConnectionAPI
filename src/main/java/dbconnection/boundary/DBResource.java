@@ -2,6 +2,8 @@ package dbconnection.boundary;
 
 import dbconnection.control.DBManager;
 import dbconnection.entity.Temperature;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -16,6 +18,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @Path(DBResource.DB_PATH)
+@Api
 @Produces(MediaType.APPLICATION_JSON)
 public class DBResource {
 
@@ -28,6 +31,7 @@ public class DBResource {
     private DBManager dbManager;
 
     @GET
+    @ApiOperation(value = "Get all temperatures")
     @Path(ALL_PATH)
     public Response selectAll() {
         List<Temperature> temperatures = dbManager.getAllMeasurement();
